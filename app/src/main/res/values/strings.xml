@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">KU Pizza</string>
+    <string name="welcome_text">Welcome to KU Pizza!</string>
+    <string name="sign_up_button">Sign Up</string>
+    <string name="sign_up_fname">First Name</string>
+    <string name="sign_up_lname">Last Name</string>
+    <string name="sign_up_email">Email Address</string>
+    <string name="sign_up_prompt">Please fill the fields below</string>
+    <string name="sign_up_street">Street</string>
+    <string name="sign_up_bldg">Building No.</string>
+    <string name="sign_up_floor">Floor No.</string>
+    <string name="sign_up_apt">Flat No.</string>
+    <string name="register_button">Register and Login</string>
+    <string name="shared_preferences_filename">ae.ac.ku.pizza.prefs</string>
+    <string name="fname_key">ae.ac.ku.pizza.fname</string>
+    <string name="lname_key">ae.ac.ku.pizza.lname</string>
+    <string name="email_key">ae.ac.ku.pizza.email</string>
+    <string name="street_key">ae.ac.ku.pizza.street</string>
+    <string name="building_key">ae.ac.ku.pizza.building</string>
+    <string name="floor_key">ae.ac.ku.pizza.floor</string>
+    <string name="apartment_key">ae.ac.ku.pizza.apartment</string>
+</resources>
