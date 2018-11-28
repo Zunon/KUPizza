@@ -21,7 +21,12 @@
         <activity
             android:name=".SignUpActivity"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".FoodMenuActivity"></activity>
+        <activity android:name=".FoodMenuActivity"
+            android:parentActivityName=".MainActivity"></activity>
+        <!--
+         -TODO: Add Cart activity
+         -TODO: Add Receipt activity
+        -->
     </application>
 
 </manifest>

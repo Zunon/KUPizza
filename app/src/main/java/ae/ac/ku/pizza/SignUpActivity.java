@@ -16,14 +16,15 @@ public class SignUpActivity extends Activity {
   }
 
   public void storeInfo(View view) {
+
     EditText
-      fNameE = (EditText) findViewById(R.id.signUpFirstName),
-      lNameE = (EditText) findViewById(R.id.signUpLastName),
-      emailE = (EditText) findViewById(R.id.signUpEmail),
-      streetE = (EditText) findViewById(R.id.signUpStreet),
-      buildingE = (EditText) findViewById(R.id.signUpBuilding),
-      floorE = (EditText) findViewById(R.id.signUpFloor),
-      apartmentE = (EditText) findViewById(R.id.signUpApartment);
+      fNameE = findViewById(R.id.signUpFirstName),
+      lNameE = findViewById(R.id.signUpLastName),
+      emailE = findViewById(R.id.signUpEmail),
+      streetE = findViewById(R.id.signUpStreet),
+      buildingE = findViewById(R.id.signUpBuilding),
+      floorE = findViewById(R.id.signUpFloor),
+      apartmentE = findViewById(R.id.signUpApartment);
 
     String
       fName = fNameE.getText().toString(),
@@ -45,9 +46,12 @@ public class SignUpActivity extends Activity {
     editor.putString(getString(R.string.floor_key), floor);
     editor.putString(getString(R.string.apartment_key), apartment);
 
-    editor.commit();
+    editor.apply();
 
     Intent done = new Intent(this, MainActivity.class);
+    done.putExtra(MainActivity.SIGNUP, true);
     startActivity(done);
   }
+
+  // TODO: Add Google Maps API support.
 }

@@ -19,4 +19,7 @@
     <string name="building_key">ae.ac.ku.pizza.building</string>
     <string name="floor_key">ae.ac.ku.pizza.floor</string>
     <string name="apartment_key">ae.ac.ku.pizza.apartment</string>
+    <string name="login_message">Hello, %s %s</string>
+    <string name="sign_out_button">Sign Out</string>
+    <string name="cart_button">Cart</string>
 </resources>
