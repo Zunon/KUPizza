@@ -23,13 +23,44 @@ public class FoodMenuActivity extends Activity {
     User currentUser = intent.getParcelableExtra(MainActivity.USER);
     TextView hello = findViewById(R.id.menuUser);
     hello.setText(getString(R.string.login_message, currentUser.getFirstName(), currentUser.getLastName()));
-    if(getIntent().hasExtra(MainActivity.CART)) {
-      cart = (HashMap<String, Integer>) getIntent().getSerializableExtra(MainActivity.CART);
-    }
+
     /*
       - TODO: add food items
         - TODO: use dropdown lists
      */
+  }
+
+  @Override
+  protected void onNewIntent(Intent intent) {
+    super.onNewIntent(intent);
+    if(intent.hasExtra(MainActivity.CART)) {
+      cart = (HashMap<String, Integer>) intent.getSerializableExtra(MainActivity.CART);
+
+      for(String item : new String[]{"Pizza", "Wings", "Bread", "Drinks"}) {
+        Button
+                increment = (Button) getViewFromIdentifier(item.toLowerCase() + "Increment"),
+                add = (Button) getViewFromIdentifier(item.toLowerCase() + "Button"),
+                decrement = (Button) getViewFromIdentifier(item.toLowerCase() + "Decrement");
+        TextView number = (TextView) getViewFromIdentifier(item.toLowerCase() + "Number");
+        add.setVisibility(View.VISIBLE);
+        increment.setVisibility(View.GONE);
+        decrement.setVisibility(View.GONE);
+        number.setVisibility(View.GONE);
+      }
+
+      for(String item : cart.keySet()) {
+        Button
+                increment = (Button) getViewFromIdentifier(item.toLowerCase() + "Increment"),
+                add = (Button) getViewFromIdentifier(item.toLowerCase() + "Button"),
+                decrement = (Button) getViewFromIdentifier(item.toLowerCase() + "Decrement");
+        TextView number = (TextView) getViewFromIdentifier(item.toLowerCase() + "Number");
+        editNumber(item, cart.get(item));
+        add.setVisibility(View.GONE);
+        increment.setVisibility(View.VISIBLE);
+        number.setVisibility(View.VISIBLE);
+        decrement.setVisibility(View.VISIBLE);
+      }
+    }
   }
 
   public void signOutAct(View view) {
@@ -37,6 +68,12 @@ public class FoodMenuActivity extends Activity {
     signOutIntent.putExtra(MainActivity.LOGOUT, true);
     startActivity(signOutIntent);
     finish();
+  }
+
+  public void moveToCart(View view) {
+    Intent cartIntent = new Intent(this, CartActivity.class);
+    cartIntent.putExtra(MainActivity.CART, cart);
+    startActivity(cartIntent);
   }
 
   public void addItem(View view) {
