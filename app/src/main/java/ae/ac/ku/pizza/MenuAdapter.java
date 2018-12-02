@@ -45,6 +45,8 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder>{
     viewHolder.decrement.setTag(labelTag + "dec");
     viewHolder.add.setTag(labelTag + "add");
     viewHolder.number.setTag(labelTag + "num");
+    viewHolder.price.setTag(labelTag + "csh");
+    viewHolder.label.setTag(labelTag + "txt");
   }
 
   @Override

@@ -4,10 +4,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -23,8 +25,11 @@ import java.util.Iterator;
 public class FoodMenuActivity extends Activity {
 
   private static final String TAG = "FoodMenuActivity";
-  HashMap<String, Integer> cart = new HashMap<>();
+  HashMap<String, Integer[]> cart = new HashMap<>();
+  HashMap<String, ArrayList<String>> nameMap = new HashMap<>();
+  HashMap<String, ArrayList<Integer>> priceMap = new HashMap<>();
   User currentUser;
+  String[] categories = new String[]{"Deals", "Pizza", "Pasta", "Chicken Wings", "Drinks", "Desserts", "Starters"};
   boolean expanded = false;
   private static final LinearLayout.LayoutParams
     ONE = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 1f),
@@ -52,31 +57,51 @@ public class FoodMenuActivity extends Activity {
     // TODO: NEW IMPLEMENTATION
     super.onNewIntent(intent);
     if(intent.hasExtra(MainActivity.CART)) {
-      cart = (HashMap<String, Integer>) intent.getSerializableExtra(MainActivity.CART);
+      cart = (HashMap<String, Integer[]>) intent.getSerializableExtra(MainActivity.CART);
+      for(String type : categories) {
+        try {
+          RecyclerView recyclerView = (RecyclerView) getViewFromIdentifier(getTagFromText(type) + "View");
+          recyclerView.getViewTreeObserver()
+            .addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+              @Override
+              public void onGlobalLayout() {
+                for (String item : nameMap.get(type)) {
+                  String tagName = item.toLowerCase().replace(" ", "_");
+                  TextView number = recyclerView.findViewWithTag(tagName + "num");
+                  Log.d(TAG, "onGlobalLayout: " + tagName);
+                  Button
+                    increment = recyclerView.findViewWithTag(tagName + "inc"),
+                    decrement = recyclerView.findViewWithTag(tagName + "dec"),
+                    add = recyclerView.findViewWithTag(tagName + "add");
+                  if(number != null) {
+                    number.setVisibility(View.GONE);
+                    increment.setVisibility(View.GONE);
+                    decrement.setVisibility(View.GONE);
+                    add.setVisibility(View.VISIBLE);
+                  }
+                }
 
-      for(String item : new String[]{"Pizza", "Wings", "Bread", "Drinks"}) {
-        Button
-                increment = (Button) getViewFromIdentifier(item.toLowerCase() + "Increment"),
-                add = (Button) getViewFromIdentifier(item.toLowerCase() + "Button"),
-                decrement = (Button) getViewFromIdentifier(item.toLowerCase() + "Decrement");
-        TextView number = (TextView) getViewFromIdentifier(item.toLowerCase() + "Number");
-        add.setVisibility(View.VISIBLE);
-        increment.setVisibility(View.GONE);
-        decrement.setVisibility(View.GONE);
-        number.setVisibility(View.GONE);
-      }
+                ConstraintLayout ancestor = findViewById(R.id.ancestor);
+                for(String item : cart.keySet()) {
+                  String tagName = item.toLowerCase().replace(' ', '_');
+                  TextView number = ancestor.findViewWithTag(tagName + "num");
+                  Button
+                          increment = ancestor.findViewWithTag(tagName + "inc"),
+                          decrement = ancestor.findViewWithTag(tagName + "dec"),
+                          add = ancestor.findViewWithTag(tagName + "add");
+                  number.setVisibility(View.VISIBLE);
+                  increment.setVisibility(View.VISIBLE);
+                  decrement.setVisibility(View.VISIBLE);
+                  add.setVisibility(View.GONE);
+                  number.setText(String.valueOf(cart.get(item)[0]));
+                }
 
-      for(String item : cart.keySet()) {
-        Button
-                increment = (Button) getViewFromIdentifier(item.toLowerCase() + "Increment"),
-                add = (Button) getViewFromIdentifier(item.toLowerCase() + "Button"),
-                decrement = (Button) getViewFromIdentifier(item.toLowerCase() + "Decrement");
-        TextView number = (TextView) getViewFromIdentifier(item.toLowerCase() + "Number");
-        editNumber(item, cart.get(item));
-        add.setVisibility(View.GONE);
-        increment.setVisibility(View.VISIBLE);
-        number.setVisibility(View.VISIBLE);
-        decrement.setVisibility(View.VISIBLE);
+                recyclerView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+              }
+            });
+        } catch(Exception e) {
+          Log.e(TAG, "onNewIntent: " + e.toString());
+        }
       }
     }
   }
@@ -96,22 +121,32 @@ public class FoodMenuActivity extends Activity {
   }
 
   public void addItem(View view) {
-    String itemName = view.getTag().toString();
-    itemName = itemName.substring(0, itemName.length() - 3);
+    String
+      itemName = view.getTag().toString(),
+      tagName = itemName.substring(0, itemName.length() - 3);
     ConstraintLayout parent = (ConstraintLayout) view.getParent();
+    TextView label = parent.findViewWithTag(tagName + "txt");
+    itemName = label.getText().toString();
     if(cart.containsKey(itemName)) {
+      TextView price = parent.findViewWithTag(tagName + "csh");
       final int
-              value = cart.get(itemName) + 1;
-      cart.put(itemName, value);
-      TextView numberText = parent.findViewWithTag(itemName + "num");
-      numberText.setText(String.valueOf(value));
+        quantityValue = cart.get(itemName)[0] + 1,
+        priceValue = Integer.parseInt(price.getText().toString());
+      final Integer[] values = new Integer[]{quantityValue, priceValue};
+      cart.put(itemName, values);
+      TextView numberText = parent.findViewWithTag(tagName + "num");
+      numberText.setText(String.valueOf(values[0]));
     } else {
-      cart.put(itemName, 1);
+      TextView price = parent.findViewWithTag(tagName + "csh");
+      final int
+              priceValue = Integer.parseInt(price.getText().toString());
+      final Integer[] values = new Integer[]{1, priceValue};
+      cart.put(itemName, values);
       view.setVisibility(View.GONE);
       Button
-              incButton = parent.findViewWithTag(itemName + "inc"),
-              decButton = parent.findViewWithTag(itemName + "dec");
-      TextView numText = parent.findViewWithTag(itemName + "num");
+              incButton = parent.findViewWithTag(tagName + "inc"),
+              decButton = parent.findViewWithTag(tagName + "dec");
+      TextView numText = parent.findViewWithTag(tagName + "num");
       numText.setText("1");
       incButton.setVisibility(View.VISIBLE);
       numText.setVisibility(View.VISIBLE);
@@ -120,25 +155,32 @@ public class FoodMenuActivity extends Activity {
   }
 
   public void removeItem(View view) {
-    String itemName = view.getTag().toString();
-    itemName = itemName.substring(0, itemName.length() - 3);
+    String
+      itemName = view.getTag().toString(),
+      tagName = itemName.substring(0, itemName.length() - 3);
     ConstraintLayout parent = (ConstraintLayout) view.getParent();
-    if(cart.get(itemName) == 1) {
+    TextView label = parent.findViewWithTag(tagName + "txt");
+    itemName = label.getText().toString();
+    if(cart.get(itemName)[0] == 1) {
       cart.remove(itemName);
       Button
-        addButton = parent.findViewWithTag(itemName.toLowerCase() + "add"),
-        incrementButton = parent.findViewWithTag(itemName.toLowerCase() + "inc");
-      TextView numberText = parent.findViewWithTag(itemName.toLowerCase() + "num");
+        addButton = parent.findViewWithTag(tagName + "add"),
+        incrementButton = parent.findViewWithTag(tagName + "inc");
+      TextView numberText = parent.findViewWithTag(tagName + "num");
 
       view.setVisibility(View.GONE);
       incrementButton.setVisibility(View.GONE);
       numberText.setVisibility(View.GONE);
       addButton.setVisibility(View.VISIBLE);
     } else {
-      final int value = cart.get(itemName) - 1;
-      cart.put(itemName, value);
-      TextView numberText = parent.findViewWithTag(itemName + "num");
-      numberText.setText(String.valueOf(value));
+      TextView price = parent.findViewWithTag(tagName + "csh");
+      final int
+              quantityValue = cart.get(itemName)[0] - 1,
+              priceValue = Integer.parseInt(price.getText().toString());
+      final Integer[] values = new Integer[]{quantityValue, priceValue};
+      cart.put(itemName, values);
+      TextView numberText = parent.findViewWithTag(tagName + "num");
+      numberText.setText(String.valueOf(values[0]));
     }
   }
 
@@ -184,11 +226,6 @@ public class FoodMenuActivity extends Activity {
     return findViewById(getResources().getIdentifier(identifier, "id", getPackageName()));
   }
 
-  private void editNumber(String itemName, int newValue) {
-    TextView numberText = (TextView) getViewFromIdentifier(itemName.toLowerCase() + "Number");
-    numberText.setText(String.valueOf(newValue));
-  }
-
   public String loadJSONFromAsset() {
     String json;
     try {
@@ -208,10 +245,10 @@ public class FoodMenuActivity extends Activity {
   private void initRecyclerViews() throws Exception {
     // INITIALIZE DATASET
     String JSONText = loadJSONFromAsset();
-    HashMap<String, ArrayList<String>> nameMap = new HashMap<>();
-    HashMap<String, ArrayList<Integer>> priceMap = new HashMap<>();
+    nameMap = new HashMap<>();
+    priceMap = new HashMap<>();
     JSONObject data = new JSONObject(JSONText);
-    for(String type : new String[]{"Deals", "Pizza", "Pasta", "Chicken Wings", "Drinks", "Desserts", "Starters"}) {
+    for(String type : categories) {
       JSONObject prices = data.getJSONObject(type);
       Iterator names = prices.keys();
       nameMap.put(type, new ArrayList<>());
@@ -231,7 +268,7 @@ public class FoodMenuActivity extends Activity {
     Log.d(TAG, "initRecyclerViews: FINISHED");
 
   }
-  private String getTagFromText(String text) throws Exception {
+  public static String getTagFromText(String text) throws Exception {
     switch(text) {
       case "Deals":
       case "Pizza":

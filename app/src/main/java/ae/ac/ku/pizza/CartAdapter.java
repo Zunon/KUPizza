@@ -30,20 +30,22 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
   @NonNull
   @Override
   public CartAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
-    View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.food_item, parent, false);
+    View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cart_item, parent, false);
     CartAdapter.ViewHolder holder = new CartAdapter.ViewHolder(view);
     return holder;
   }
 
   @Override
   public void onBindViewHolder(@NonNull CartAdapter.ViewHolder viewHolder, int i) {
-    Log.d(TAG, "onBindViewHolder: called.");
-    String labelTag =mNames.get(i).toLowerCase().replace(' ', '_');
+    String labelTag = mNames.get(i).toLowerCase().replace(' ', '_');
+    Log.d(TAG, "Zunon onBindViewHolder: called, " + labelTag);
     viewHolder.label.setText(mNames.get(i));
     viewHolder.price.setText(mPrices.get(i).toString());
     viewHolder.increment.setTag(labelTag + "inc");
     viewHolder.decrement.setTag(labelTag + "dec");
     viewHolder.number.setTag(labelTag + "num");
+    viewHolder.card.setTag(labelTag + "crd");
+    viewHolder.label.setTag(labelTag + "txt");
   }
 
   @Override
