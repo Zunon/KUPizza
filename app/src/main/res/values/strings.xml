@@ -22,4 +22,11 @@
     <string name="login_message">Hello, %s %s</string>
     <string name="sign_out_button">Sign Out</string>
     <string name="cart_button">Cart</string>
+    <string name="item_pizza">Pizza</string>
+    <string name="button_add">Add to cart</string>
+    <string name="item_wings">Wings</string>
+    <string name="item_bread">Bread</string>
+    <string name="item_drinks">Drinks</string>
+    <string name="button_increment">+</string>
+    <string name="button_decrement">-</string>
 </resources>

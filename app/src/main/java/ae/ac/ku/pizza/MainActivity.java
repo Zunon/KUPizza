@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 public class MainActivity extends Activity {
@@ -12,7 +11,8 @@ public class MainActivity extends Activity {
   public static final String
     USER = "ae.ac.ku.pizza.USER_OBJECT",
     LOGOUT = "ae.ac.ku.pizza.LOGOUT_VALUE",
-    SIGNUP = "ae.ac.ku.pizza.SIGNUP_VALUE";
+    SIGNUP = "ae.ac.ku.pizza.SIGNUP_VALUE",
+    CART = "ae.ac.ku.pizza.CART_HASHMAP";
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +26,6 @@ public class MainActivity extends Activity {
     super.onNewIntent(intent);
     boolean logout = intent.getBooleanExtra(LOGOUT, false);
     boolean login = intent.getBooleanExtra(SIGNUP, false);
-    Log.d("Zunon", logout + " " + login);
     if(logout) {
       SharedPreferences localPrefs = getSharedPreferences(getString(R.string.shared_preferences_filename), MODE_PRIVATE);
       SharedPreferences.Editor editor = localPrefs.edit();
@@ -43,7 +42,6 @@ public class MainActivity extends Activity {
   }
 
   public void persist() {
-    Log.d("Zunon", "PERSIST");
     SharedPreferences localPrefs = getSharedPreferences(getString(R.string.shared_preferences_filename), MODE_PRIVATE);
 
     String login = localPrefs.getString(getString(R.string.fname_key), "Login Failed!");
