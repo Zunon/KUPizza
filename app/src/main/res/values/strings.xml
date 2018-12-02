@@ -25,10 +25,20 @@
     <string name="cart_button">Cart</string>
     <string name="item_pizza">Pizza</string>
     <string name="button_add">Add to cart</string>
-    <string name="item_wings">Wings</string>
-    <string name="item_bread">Bread</string>
+    <string name="item_wings">Chicken Wings</string>
+    <string name="item_starters">Starters</string>
     <string name="item_drinks">Drinks</string>
     <string name="button_increment">+</string>
     <string name="button_decrement">-</string>
     <string name="back_to_menu">Back to Menu</string>
+    <string name="item_deals">Deals</string>
+    <string name="item_pasta" >Pasta</string>
+    <string name="item_desserts">Desserts</string>
+    <string name="tag_deals">deals</string>
+    <string name="tag_pizza">pizza</string>
+    <string name="tag_desserts">desserts</string>
+    <string name="tag_wings">wings</string>
+    <string name="tag_starters">starters</string>
+    <string name="tag_drinks">drinks</string>
+    <string name="tag_pasta">pasta</string>
 </resources>

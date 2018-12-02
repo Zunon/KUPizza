@@ -4,10 +4,15 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 public class MainActivity extends Activity {
 
+  private static final String TAG = "MainActivity";
   public static final String
     USER = "ae.ac.ku.pizza.USER_OBJECT",
     LOGOUT = "ae.ac.ku.pizza.LOGOUT_VALUE",
@@ -53,8 +58,9 @@ public class MainActivity extends Activity {
                 street = localPrefs.getString(getString(R.string.street_key), ""),
                 building = localPrefs.getString(getString(R.string.building_key), ""),
                 floor = localPrefs.getString(getString(R.string.floor_key), ""),
-                apartment = localPrefs.getString(getString(R.string.apartment_key), "");
-        User currentUser = new User(login, lastName, email, street, building, floor, apartment);
+                apartment = localPrefs.getString(getString(R.string.apartment_key), ""),
+                location = localPrefs.getString(getString(R.string.location_key), "");
+        User currentUser = new User(login, lastName, email, street, building, floor, apartment, location);
 
         Intent toMenu = new Intent(this, FoodMenuActivity.class);
         toMenu.putExtra(USER, currentUser);

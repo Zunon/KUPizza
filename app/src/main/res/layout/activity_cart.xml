@@ -164,7 +164,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
-                android:text="@string/item_bread"
+                android:text="@string/item_starters"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -178,7 +178,7 @@
                 android:minWidth="0dp"
                 android:minHeight="0dp"
                 android:onClick="addItem"
-                android:tag="@string/item_bread"
+                android:tag="@string/item_starters"
                 android:text="@string/button_increment"
                 app:layout_constraintBaseline_toBaselineOf="@+id/breadText"
                 app:layout_constraintEnd_toEndOf="parent" />
@@ -201,7 +201,7 @@
                 android:minWidth="0dp"
                 android:minHeight="0dp"
                 android:onClick="removeItem"
-                android:tag="@string/item_bread"
+                android:tag="@string/item_starters"
                 android:text="@string/button_decrement"
                 app:layout_constraintBaseline_toBaselineOf="@+id/breadText"
                 app:layout_constraintEnd_toStartOf="@+id/breadNumber" />

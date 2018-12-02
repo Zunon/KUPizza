@@ -12,7 +12,8 @@ public class User implements Parcelable {
     streetAddress,
     buildingNumber,
     floorNumber,
-    apartmentNumber;
+    apartmentNumber,
+    location;
 
   public String getFirstName() {
     return firstName;
@@ -70,7 +71,15 @@ public class User implements Parcelable {
     this.apartmentNumber = apartmentNumber;
   }
 
-  public User(String firstName, String lastName, String emailAddress, String streetAddress, String buildingNumber, String floorNumber, String apartmentNumber) {
+  public String getLocation() {
+    return location;
+  }
+
+  public void setLocation(String location) {
+    this.location = location;
+  }
+
+  public User(String firstName, String lastName, String emailAddress, String streetAddress, String buildingNumber, String floorNumber, String apartmentNumber, String location) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.emailAddress = emailAddress;
@@ -78,6 +87,7 @@ public class User implements Parcelable {
     this.buildingNumber = buildingNumber;
     this.floorNumber = floorNumber;
     this.apartmentNumber = apartmentNumber;
+    this.location = location;
   }
 
   public int describeContents() {
@@ -92,6 +102,7 @@ public class User implements Parcelable {
     dest.writeString(buildingNumber);
     dest.writeString(floorNumber);
     dest.writeString(apartmentNumber);
+    dest.writeString(location);
   }
 
   public static final Parcelable.Creator<User> CREATOR = new Parcelable.Creator<User>() {
@@ -112,5 +123,6 @@ public class User implements Parcelable {
     buildingNumber = in.readString();
     floorNumber = in.readString();
     apartmentNumber = in.readString();
+    location = in.readString();
   }
 }

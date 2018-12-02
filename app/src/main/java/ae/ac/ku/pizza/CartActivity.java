@@ -12,11 +12,13 @@ import java.util.HashMap;
 
 public class CartActivity extends Activity {
   HashMap<String, Integer> cart;
+  User currentUser;
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_cart);
     cart = (HashMap<String, Integer>) getIntent().getSerializableExtra(MainActivity.CART);
+    currentUser = getIntent().getParcelableExtra(MainActivity.USER);
 
     for (String item : cart.keySet()) {
       editNumber(item, cart.get(item));

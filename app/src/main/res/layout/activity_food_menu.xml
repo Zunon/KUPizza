@@ -42,353 +42,127 @@
         app:layout_constraintBaseline_toBaselineOf="@+id/signOutButton"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/pizzaCard"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/wingsCard"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signOutButton">
-
-        <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <Button
-                android:id="@+id/pizzaButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:minWidth="0dp"
-                android:minHeight="0dp"
-                android:onClick="addItem"
-                android:tag="@string/item_pizza"
-                android:text="@string/button_add"
-                android:textAllCaps="false"
-                android:textSize="14sp"
-                app:layout_constraintBaseline_toBaselineOf="@+id/pizzaText"
-                app:layout_constraintEnd_toEndOf="parent" />
-
-            <TextView
-                android:id="@+id/pizzaText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:text="@string/item_pizza"
-                android:textSize="24sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <Button
-                android:id="@+id/pizzaIncrement"
-                android:layout_width="32dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:minWidth="0dp"
-                android:minHeight="0dp"
-                android:onClick="addItem"
-                android:tag="@string/item_pizza"
-                android:text="@string/button_increment"
-                android:visibility="gone"
-                app:layout_constraintBaseline_toBaselineOf="@+id/pizzaText"
-                app:layout_constraintEnd_toEndOf="parent" />
-
-            <TextView
-                android:id="@+id/pizzaNumber"
-                android:layout_width="32dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:textAlignment="center"
-                android:textSize="24sp"
-                android:visibility="gone"
-                app:layout_constraintBaseline_toBaselineOf="@+id/pizzaText"
-                app:layout_constraintEnd_toStartOf="@+id/pizzaIncrement" />
-
-            <Button
-                android:id="@+id/pizzaDecrement"
-                android:layout_width="32dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:minWidth="0dp"
-                android:minHeight="0dp"
-                android:onClick="removeItem"
-                android:tag="@string/item_pizza"
-                android:text="@string/button_decrement"
-                android:visibility="gone"
-                app:layout_constraintBaseline_toBaselineOf="@+id/pizzaText"
-                app:layout_constraintEnd_toStartOf="@+id/pizzaNumber" />
-        </android.support.constraint.ConstraintLayout>
-
-    </android.support.v7.widget.CardView>
-
-    <android.support.v7.widget.CardView
-        android:id="@+id/wingsCard"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/breadCard"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pizzaCard">
-
-        <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <Button
-                android:id="@+id/wingsButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:minWidth="0dp"
-                android:minHeight="0dp"
-                android:onClick="addItem"
-                android:tag="@string/item_wings"
-                android:text="@string/button_add"
-                android:textAllCaps="false"
-                android:textSize="14sp"
-                app:layout_constraintBaseline_toBaselineOf="@+id/wingsText"
-                app:layout_constraintEnd_toEndOf="parent" />
-
-            <TextView
-                android:id="@+id/wingsText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:text="@string/item_wings"
-                android:textSize="24sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <Button
-                android:id="@+id/wingsIncrement"
-                android:layout_width="32dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:minWidth="0dp"
-                android:minHeight="0dp"
-                android:onClick="addItem"
-                android:tag="@string/item_wings"
-                android:text="@string/button_increment"
-                android:visibility="gone"
-                app:layout_constraintBaseline_toBaselineOf="@+id/wingsText"
-                app:layout_constraintEnd_toEndOf="parent" />
-
-            <TextView
-                android:id="@+id/wingsNumber"
-                android:layout_width="32dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:textAlignment="center"
-                android:textSize="24sp"
-                android:visibility="gone"
-                app:layout_constraintBaseline_toBaselineOf="@+id/wingsText"
-                app:layout_constraintEnd_toStartOf="@+id/wingsIncrement" />
-
-            <Button
-                android:id="@+id/wingsDecrement"
-                android:layout_width="32dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:minWidth="0dp"
-                android:minHeight="0dp"
-                android:onClick="removeItem"
-                android:tag="@string/item_wings"
-                android:text="@string/button_decrement"
-                android:visibility="gone"
-                app:layout_constraintBaseline_toBaselineOf="@+id/wingsText"
-                app:layout_constraintEnd_toStartOf="@+id/wingsNumber" />
-        </android.support.constraint.ConstraintLayout>
-
-    </android.support.v7.widget.CardView>
-
-    <android.support.v7.widget.CardView
-        android:id="@+id/breadCard"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/drinksCard"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/wingsCard">
-
-        <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <Button
-                android:id="@+id/breadButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:minWidth="0dp"
-                android:minHeight="0dp"
-                android:onClick="addItem"
-                android:tag="@string/item_bread"
-                android:text="@string/button_add"
-                android:textAllCaps="false"
-                android:textSize="14sp"
-                app:layout_constraintBaseline_toBaselineOf="@+id/breadText"
-                app:layout_constraintEnd_toEndOf="parent" />
-
-            <TextView
-                android:id="@+id/breadText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:text="@string/item_bread"
-                android:textSize="24sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <Button
-                android:id="@+id/breadIncrement"
-                android:layout_width="32dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:minWidth="0dp"
-                android:minHeight="0dp"
-                android:onClick="addItem"
-                android:tag="@string/item_bread"
-                android:text="@string/button_increment"
-                android:visibility="gone"
-                app:layout_constraintBaseline_toBaselineOf="@+id/breadText"
-                app:layout_constraintEnd_toEndOf="parent" />
-
-            <TextView
-                android:id="@+id/breadNumber"
-                android:layout_width="32dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:textAlignment="center"
-                android:textSize="24sp"
-                android:visibility="gone"
-                app:layout_constraintBaseline_toBaselineOf="@+id/breadText"
-                app:layout_constraintEnd_toStartOf="@+id/breadIncrement" />
-
-            <Button
-                android:id="@+id/breadDecrement"
-                android:layout_width="32dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:minWidth="0dp"
-                android:minHeight="0dp"
-                android:onClick="removeItem"
-                android:tag="@string/item_bread"
-                android:text="@string/button_decrement"
-                android:visibility="gone"
-                app:layout_constraintBaseline_toBaselineOf="@+id/breadText"
-                app:layout_constraintEnd_toStartOf="@+id/breadNumber" />
-        </android.support.constraint.ConstraintLayout>
-
-    </android.support.v7.widget.CardView>
-
-    <android.support.v7.widget.CardView
-        android:id="@+id/drinksCard"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/breadCard">
+        app:layout_constraintTop_toBottomOf="@+id/menuUser">
 
-        <android.support.constraint.ConstraintLayout
+        <Button
+            android:id="@+id/dealsButton"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:onClick="expand"
+            android:tag="@string/tag_deals"
+            android:text="@string/item_deals"
+            android:textAllCaps="false" />
 
-            <Button
-                android:id="@+id/drinksButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:minWidth="0dp"
-                android:minHeight="0dp"
-                android:onClick="addItem"
-                android:tag="@string/item_drinks"
-                android:text="@string/button_add"
-                android:textAllCaps="false"
-                android:textSize="14sp"
-                app:layout_constraintBaseline_toBaselineOf="@+id/drinksText"
-                app:layout_constraintEnd_toEndOf="parent" />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/dealsView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0" />
 
-            <TextView
-                android:id="@+id/drinksText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:text="@string/item_drinks"
-                android:textSize="24sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <Button
+            android:id="@+id/pizzaButton"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:onClick="expand"
+            android:tag="@string/tag_pizza"
+            android:text="@string/item_pizza"
+            android:textAllCaps="false" />
 
-            <Button
-                android:id="@+id/drinksIncrement"
-                android:layout_width="32dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:minWidth="0dp"
-                android:minHeight="0dp"
-                android:onClick="addItem"
-                android:tag="@string/item_drinks"
-                android:text="@string/button_increment"
-                android:visibility="gone"
-                app:layout_constraintBaseline_toBaselineOf="@+id/drinksText"
-                app:layout_constraintEnd_toEndOf="parent" />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/pizzaView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0" />
 
-            <TextView
-                android:id="@+id/drinksNumber"
-                android:layout_width="32dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:textAlignment="center"
-                android:textSize="24sp"
-                android:visibility="gone"
-                app:layout_constraintBaseline_toBaselineOf="@+id/drinksText"
-                app:layout_constraintEnd_toStartOf="@+id/drinksIncrement" />
+        <Button
+            android:id="@+id/pastaButton"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:onClick="expand"
+            android:tag="@string/tag_pasta"
+            android:text="@string/item_pasta"
+            android:textAllCaps="false" />
 
-            <Button
-                android:id="@+id/drinksDecrement"
-                android:layout_width="32dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:minWidth="0dp"
-                android:minHeight="0dp"
-                android:onClick="removeItem"
-                android:tag="@string/item_drinks"
-                android:text="@string/button_decrement"
-                android:visibility="gone"
-                app:layout_constraintBaseline_toBaselineOf="@+id/drinksText"
-                app:layout_constraintEnd_toStartOf="@+id/drinksNumber" />
-        </android.support.constraint.ConstraintLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/pastaView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0" />
 
-    </android.support.v7.widget.CardView>
+        <Button
+            android:id="@+id/wingsButton"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:onClick="expand"
+            android:tag="@string/tag_wings"
+            android:text="@string/item_wings"
+            android:textAllCaps="false" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/wingsView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0" />
+
+        <Button
+            android:id="@+id/drinksButton"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:onClick="expand"
+            android:tag="@string/tag_drinks"
+            android:text="@string/item_drinks"
+            android:textAllCaps="false" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/drinksView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0" />
+
+        <Button
+            android:id="@+id/dessertsButton"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:onClick="expand"
+            android:tag="@string/tag_desserts"
+            android:text="@string/item_desserts"
+            android:textAllCaps="false" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/dessertsView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0" />
+
+        <Button
+            android:id="@+id/startersButton"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:onClick="expand"
+            android:tag="@string/tag_starters"
+            android:text="@string/item_starters"
+            android:textAllCaps="false" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/startersView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0" />
+    </LinearLayout>
 
 
 </android.support.constraint.ConstraintLayout>

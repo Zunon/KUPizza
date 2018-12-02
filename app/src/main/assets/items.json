@@ -1,0 +1,89 @@
+{
+  "Deals": {
+    "All Stars Meal": 77,
+    "Fun Feast Medium": 79,
+    "Fun Feast Large": 99,
+    "Grand Meal": 150,
+    "Triple Treat Box": 90,
+    "Family Box": 79,
+    "WOW Triples Small": 44,
+    "WOW Triples Medium": 66,
+    "WOW Triples Large": 88,
+    "Meal For Two With Wedges": 57,
+    "Party Box": 100,
+    "Friends Meal": 69,
+    "All In One Box": 59
+  },
+
+  "Pizza": {
+    "Carnivore": 38,
+    "Chicken Super Supreme": 38,
+    "Chicken Shawerma": 35,
+    "Very Veggie": 35,
+    "Super Supreme": 35,
+    "Mediterranean Shrimp Lovers": 38,
+    "Seafood Island": 38,
+    "Classic Pepperoni": 35,
+    "Margarita": 31,
+    "Tropical Hawaiian": 35,
+    "Hot Stuff": 35,
+    "Cheeky Chicken": 35,
+    "Chicken BBq": 35,
+    "Chicken Fajita": 35,
+    "Spicy Chicken Ranch": 38,
+    "Ultimate Cheese": 38,
+    "Meaty BBQ": 38
+  },
+
+  "Pasta": {
+    "Chicken Alfredo Baked Pasta": 19,
+    "Foot Long Lasagna": 19,
+    "Cheesy Fusilli Bolognese Pasta": 19
+  },
+
+  "Chicken Wings": {
+    "Wingstreet": 25,
+    "Buffalo Wings": 28
+  },
+
+  "Drinks": {
+    "Classic Lime": 15,
+    "Very Berry": 15,
+    "Pineapple Mojito": 15,
+    "Diet Pepsi": 10,
+    "Pepsi": 10,
+    "Fresh Orange Juice": 12,
+    "7UP": 8,
+    "Mountain Dew": 8,
+    "Mirinda": 8
+  },
+
+  "Desserts": {
+    "Red Velvet Cake": 12,
+    "Double Chocolate Hershey's": 19,
+    "Cheesecake": 12,
+    "Chocolate Cake": 12,
+    "Cookie Dough": 16,
+    "Hershey's Cookie": 19,
+    "Choco Mania": 15
+  },
+
+  "Starters": {
+    "Salad": 14,
+    "Trio Platter": 28,
+    "Cheesy Pops": 11,
+    "BBQ Chicken Spin Rolls": 14,
+    "Potato Wedges": 9,
+    "Garlic Bread Supreme": 8,
+    "Garlic Bread": 6,
+    "Garlic Bread Super Supreme": 9,
+    "Gold Bread Sticks 10Pcs": 9,
+    "Creamy Ranch": 4,
+    "Fiery Peri": 4,
+    "Chipotle BBQ": 4,
+    "Garlic & Mint": 4,
+    "Chicken Sticks": 17,
+    "Cheddar Pops": 11,
+    "Parmesan Fries": 11
+  }
+}
