@@ -26,7 +26,7 @@
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" >
+        android:layout_weight="1.75">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
@@ -40,7 +40,7 @@
                 android:layout_marginTop="16dp"
                 android:text="@string/payment_select"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/priceLabel" />
 
             <RadioGroup
                 android:layout_width="0dp"
@@ -50,8 +50,9 @@
                 android:layout_marginEnd="16dp"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toEndOf="@+id/radioLabel"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@+id/priceNumber">
 
                 <RadioButton
                     android:id="@+id/cardButton"
@@ -77,16 +78,17 @@
 
             <EditText
                 android:id="@+id/cardInput"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
                 android:ems="10"
                 android:enabled="false"
-                android:focusable="false"
+                android:focusedByDefault="false"
                 android:inputType="number"
+                android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/cardLabel"
@@ -100,6 +102,30 @@
                 android:text="@string/card_number"
                 app:layout_constraintBaseline_toBaselineOf="@+id/cardInput"
                 app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/priceLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/price_total"
+                android:textAlignment="textStart"
+                app:layout_constraintBaseline_toBaselineOf="@+id/priceNumber"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/priceNumber"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/priceNumber"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/priceLabel"
+                app:layout_constraintTop_toTopOf="parent" />
         </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>
 

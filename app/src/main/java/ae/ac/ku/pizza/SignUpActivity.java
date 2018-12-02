@@ -31,6 +31,7 @@ public class SignUpActivity extends Activity {
     EditText
       fNameE = findViewById(R.id.signUpFirstName),
       lNameE = findViewById(R.id.signUpLastName),
+      phoneE = findViewById(R.id.signUpPhone),
       emailE = findViewById(R.id.signUpEmail),
       streetE = findViewById(R.id.signUpStreet),
       buildingE = findViewById(R.id.signUpBuilding),
@@ -40,6 +41,7 @@ public class SignUpActivity extends Activity {
     String
       fName = fNameE.getText().toString(),
       lName = lNameE.getText().toString(),
+      phone = phoneE.getText().toString(),
       email = emailE.getText().toString(),
       street = streetE.getText().toString(),
       building = buildingE.getText().toString(),
@@ -53,6 +55,7 @@ public class SignUpActivity extends Activity {
 
     editor.putString(getString(R.string.fname_key), fName);
     editor.putString(getString(R.string.lname_key), lName);
+    editor.putString(getString(R.string.phone_key), phone);
     editor.putString(getString(R.string.email_key), email);
     editor.putString(getString(R.string.street_key), street);
     editor.putString(getString(R.string.building_key), building);

@@ -47,4 +47,16 @@
     <string name="choice_cash">Cash on Delivery</string>
     <string name="card_number">Credit Card:</string>
     <string name="title_activity_receipt">ReceiptActivity</string>
+    <string name="price_total">Total Price:</string>
+    <string name="receipt_start">Your order has been successfully received, thank you for choosing KU Pizza!</string>
+    <string name="info_laber">Order Information:</string>
+    <string name="name_label">Name:</string>
+    <string name="phone_label">Phone Number:</string>
+    <string name="order_label">Ordered Items:</string>
+    <string name="price_label">Total Order Price:</string>
+    <string name="location_label">Latitude and Logitude:</string>
+    <string name="time_label">Estimated Time Until Arrival:</string>
+    <string name="receipt_end">We hope you\'ll enjoy our food. :)</string>
+    <string name="sign_up_phone">Phone Number</string>
+    <string name="phone_key">ae.ac.ku.pizza.phone</string>
 </resources>

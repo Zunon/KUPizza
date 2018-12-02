@@ -29,7 +29,6 @@ public class CartActivity extends Activity {
     cart = (HashMap<String, Integer[]>) getIntent().getSerializableExtra(MainActivity.CART);
     currentUser = getIntent().getParcelableExtra(MainActivity.USER);
     initRecyclerViews();
-//   TODO: FIX
   }
 
   public void backToMenu(View view) {
@@ -53,6 +52,8 @@ public class CartActivity extends Activity {
     cart.put(itemName, values);
     TextView number = parent.findViewWithTag(tagName + "num");
     number.setText(String.valueOf(values[0]));
+    TextView totalPrice = findViewById(R.id.priceNumber);
+    totalPrice.setText(String.valueOf(total(cart)));
   }
 
   public void removeItem(View view) {
@@ -66,12 +67,16 @@ public class CartActivity extends Activity {
       RecyclerView recyclerView = findViewById(R.id.cartView);
       CardView card = recyclerView.findViewWithTag(tagName + "crd");
       card.setVisibility(View.GONE);
+      TextView totalPrice = findViewById(R.id.priceNumber);
+      totalPrice.setText(String.valueOf(total(cart)));
     } else {
       final int value = cart.get(itemName)[0] - 1, price = cart.get(itemName)[1];
       final Integer[] values = new Integer[] {value, price};
       cart.put(itemName, values);
       TextView number = parent.findViewWithTag(tagName + "num");
       number.setText(String.valueOf(values[0]));
+      TextView totalPrice = findViewById(R.id.priceNumber);
+      totalPrice.setText(String.valueOf(total(cart)));
     }
   }
 
@@ -98,12 +103,13 @@ public class CartActivity extends Activity {
         public void onGlobalLayout() {
           for (String item : cart.keySet()) {
             String tagName = item.toLowerCase().replace(" ", "_");
-            Log.d(TAG, "Zunon initRecyclerViews: " + recyclerView.toString());
             CardView card = recyclerView.findViewWithTag(tagName + "crd");
             TextView number = card.findViewWithTag(tagName + "num");
             number.setText(String.valueOf(cart.get(item)[0]));
             card.setVisibility(View.VISIBLE);
           }
+          TextView totalPrice = findViewById(R.id.priceNumber);
+          totalPrice.setText(String.valueOf(total(cart)));
           recyclerView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
         }
       });
@@ -118,8 +124,8 @@ public class CartActivity extends Activity {
 
   public void disableCard(View view) {
     EditText cardInput = findViewById(R.id.cardInput);
-    cardInput.setEnabled(true);
-    cardInput.setFocusable(true);
+    cardInput.setEnabled(false);
+    cardInput.setFocusable(false);
   }
 
   public void checkOut(View view) {
@@ -130,12 +136,20 @@ public class CartActivity extends Activity {
     } else {
       paymentData = "Cash on Delivery";
     }
-
+    TextView totalText = findViewById(R.id.priceNumber);
+    int totalValue = Integer.parseInt(totalText.getText().toString());
     Intent receiptIntent = new Intent(this, ReceiptActivity.class);
     receiptIntent.putExtra(MainActivity.USER, currentUser);
     receiptIntent.putExtra(MainActivity.CART, cart);
     receiptIntent.putExtra(MainActivity.PAYMENT, paymentData);
+    receiptIntent.putExtra(MainActivity.TOTAL, totalValue);
     startActivity(receiptIntent);
     finish();
+  }
+
+  private static int total(HashMap<String, Integer[]> cartMap) {
+    ArrayList<Integer> prices = new ArrayList<>();
+    for(String item : cartMap.keySet()) prices.add(cartMap.get(item)[1] * cartMap.get(item)[0]);
+    return prices.stream().mapToInt(Integer::intValue).sum();
   }
 }

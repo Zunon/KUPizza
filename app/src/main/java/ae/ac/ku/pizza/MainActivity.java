@@ -18,7 +18,8 @@ public class MainActivity extends Activity {
     LOGOUT = "ae.ac.ku.pizza.LOGOUT_VALUE",
     SIGNUP = "ae.ac.ku.pizza.SIGNUP_VALUE",
     CART = "ae.ac.ku.pizza.CART_HASHMAP",
-    PAYMENT = "ae.ac.ku.pizza.PAYMENT_INFORMATION";
+    PAYMENT = "ae.ac.ku.pizza.PAYMENT_INFORMATION",
+    TOTAL = "ae.ac.ku.pizza.TOTAL_VALUE";
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -55,13 +56,14 @@ public class MainActivity extends Activity {
       if(!login.equals("Login Failed!")) {
         String
                 lastName = localPrefs.getString(getString(R.string.lname_key), ""),
+                phoneNumber = localPrefs.getString(getString(R.string.phone_key), ""),
                 email = localPrefs.getString(getString(R.string.email_key), ""),
                 street = localPrefs.getString(getString(R.string.street_key), ""),
                 building = localPrefs.getString(getString(R.string.building_key), ""),
                 floor = localPrefs.getString(getString(R.string.floor_key), ""),
                 apartment = localPrefs.getString(getString(R.string.apartment_key), ""),
                 location = localPrefs.getString(getString(R.string.location_key), "");
-        User currentUser = new User(login, lastName, email, street, building, floor, apartment, location);
+        User currentUser = new User(login, lastName, phoneNumber, email, street, building, floor, apartment, location);
 
         Intent toMenu = new Intent(this, FoodMenuActivity.class);
         toMenu.putExtra(USER, currentUser);

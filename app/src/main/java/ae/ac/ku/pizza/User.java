@@ -6,14 +6,24 @@ import android.os.Parcelable;
 public class User implements Parcelable {
 
   private String
-    firstName,
-    lastName,
-    emailAddress,
-    streetAddress,
-    buildingNumber,
-    floorNumber,
-    apartmentNumber,
-    location;
+    firstName;
+  private String lastName;
+  private String phoneNumber;
+
+  public String getPhoneNumber() {
+    return phoneNumber;
+  }
+
+  public void setPhoneNumber(String phoneNumber) {
+    this.phoneNumber = phoneNumber;
+  }
+
+  private String emailAddress;
+  private String streetAddress;
+  private String buildingNumber;
+  private String floorNumber;
+  private String apartmentNumber;
+  private String location;
 
   public String getFirstName() {
     return firstName;
@@ -79,9 +89,10 @@ public class User implements Parcelable {
     this.location = location;
   }
 
-  public User(String firstName, String lastName, String emailAddress, String streetAddress, String buildingNumber, String floorNumber, String apartmentNumber, String location) {
+  public User(String firstName, String lastName, String phoneNumber, String emailAddress, String streetAddress, String buildingNumber, String floorNumber, String apartmentNumber, String location) {
     this.firstName = firstName;
     this.lastName = lastName;
+    this.phoneNumber = phoneNumber;
     this.emailAddress = emailAddress;
     this.streetAddress = streetAddress;
     this.buildingNumber = buildingNumber;
@@ -97,6 +108,7 @@ public class User implements Parcelable {
   public void writeToParcel(Parcel dest, int flags) {
     dest.writeString(firstName);
     dest.writeString(lastName);
+    dest.writeString(phoneNumber);
     dest.writeString(emailAddress);
     dest.writeString(streetAddress);
     dest.writeString(buildingNumber);
@@ -118,6 +130,7 @@ public class User implements Parcelable {
   public User(Parcel in) {
     firstName = in.readString();
     lastName = in.readString();
+    phoneNumber = in.readString();
     emailAddress = in.readString();
     streetAddress = in.readString();
     buildingNumber = in.readString();
