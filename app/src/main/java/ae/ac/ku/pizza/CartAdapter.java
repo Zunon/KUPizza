@@ -14,14 +14,14 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>{
-  private static final String TAG = "RecyclerViewAdapter";
+public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
+  private static final String TAG = "CartAdapter";
 
   private ArrayList<String> mNames = new ArrayList<>();
   private ArrayList<Integer> mPrices = new ArrayList<>();
   private Context mContext;
 
-  public RecyclerViewAdapter(ArrayList<String> mNames, ArrayList<Integer> mPrices, Context mContext) {
+  public CartAdapter(ArrayList<String> mNames, ArrayList<Integer> mPrices, Context mContext) {
     this.mNames = mNames;
     this.mPrices = mPrices;
     this.mContext = mContext;
@@ -29,21 +29,20 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
   @NonNull
   @Override
-  public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
+  public CartAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
     View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.food_item, parent, false);
-    ViewHolder holder = new ViewHolder(view);
+    CartAdapter.ViewHolder holder = new CartAdapter.ViewHolder(view);
     return holder;
   }
 
   @Override
-  public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+  public void onBindViewHolder(@NonNull CartAdapter.ViewHolder viewHolder, int i) {
     Log.d(TAG, "onBindViewHolder: called.");
     String labelTag =mNames.get(i).toLowerCase().replace(' ', '_');
     viewHolder.label.setText(mNames.get(i));
     viewHolder.price.setText(mPrices.get(i).toString());
     viewHolder.increment.setTag(labelTag + "inc");
     viewHolder.decrement.setTag(labelTag + "dec");
-    viewHolder.add.setTag(labelTag + "add");
     viewHolder.number.setTag(labelTag + "num");
   }
 
@@ -55,15 +54,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
   public class ViewHolder extends RecyclerView.ViewHolder {
 
     Button
-      add, increment, decrement;
+            increment, decrement;
     TextView
-      number, label, price;
+            number, label, price;
     CardView card;
     ConstraintLayout constraintLayout;
 
     public ViewHolder(@NonNull View itemView) {
       super(itemView);
-      add = itemView.findViewById(R.id.button);
       increment = itemView.findViewById(R.id.increment);
       decrement = itemView.findViewById(R.id.decrement);
       number = itemView.findViewById(R.id.number);

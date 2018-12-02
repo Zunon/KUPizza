@@ -41,4 +41,5 @@
     <string name="tag_starters">starters</string>
     <string name="tag_drinks">drinks</string>
     <string name="tag_pasta">pasta</string>
+    <string name="button_checkout">Place Order</string>
 </resources>

@@ -1,7 +1,6 @@
 package ae.ac.ku.pizza;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
@@ -13,7 +12,6 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -21,9 +19,6 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class FoodMenuActivity extends Activity {
 
@@ -54,6 +49,7 @@ public class FoodMenuActivity extends Activity {
 
   @Override
   protected void onNewIntent(Intent intent) {
+    // TODO: NEW IMPLEMENTATION
     super.onNewIntent(intent);
     if(intent.hasExtra(MainActivity.CART)) {
       cart = (HashMap<String, Integer>) intent.getSerializableExtra(MainActivity.CART);
@@ -227,7 +223,7 @@ public class FoodMenuActivity extends Activity {
       }
       // INSTANTIATE RECYCLERVIEWS
       RecyclerView recyclerView = (RecyclerView) getViewFromIdentifier(getTagFromText(type) + "View");
-      RecyclerViewAdapter adapter = new RecyclerViewAdapter(nameMap.get(type), priceMap.get(type), this);
+      MenuAdapter adapter = new MenuAdapter(nameMap.get(type), priceMap.get(type), this);
       recyclerView.setAdapter(adapter);
       recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
