@@ -24,6 +24,7 @@ public class SignUpActivity extends Activity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_sign_up);
+    getLocation();
   }
 
   public void storeInfo(View view) {
@@ -48,8 +49,6 @@ public class SignUpActivity extends Activity {
       floor = floorE.getText().toString(),
       apartment = apartmentE.getText().toString();
 
-    getLocation();
-
     SharedPreferences localPrefs = getSharedPreferences(getString(R.string.shared_preferences_filename), MODE_PRIVATE);
     SharedPreferences.Editor editor = localPrefs.edit();
 
@@ -69,8 +68,6 @@ public class SignUpActivity extends Activity {
     startActivity(done);
   }
 
-  // TODO: Add Google Maps API support.
-
   private void getLocation() {
     if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
       ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 69);
@@ -80,7 +77,7 @@ public class SignUpActivity extends Activity {
     LocationListener locationListener = new LocationListener() {
       @Override
       public void onLocationChanged(Location location) {
-        setLocation(location.getLatitude() + ", " + location.getLongitude());
+        setLocation(String.valueOf(location.getLatitude()).substring(0, 8) + ", " + String.valueOf(location.getLongitude()).substring(0, 8));
       }
 
       @Override

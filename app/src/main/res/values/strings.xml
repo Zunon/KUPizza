@@ -59,4 +59,6 @@
     <string name="receipt_end">We hope you\'ll enjoy our food. :)</string>
     <string name="sign_up_phone">Phone Number</string>
     <string name="phone_key">ae.ac.ku.pizza.phone</string>
+    <string name="x">x</string>
+    <string name="aed">AED</string>
 </resources>

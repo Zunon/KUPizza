@@ -27,10 +27,6 @@
             android:name=".FoodMenuActivity"
             android:launchMode="singleInstance"
             android:parentActivityName=".MainActivity" />
-        <!--
-         -TODO: Add Cart activity
-         -TODO: Add Receipt activity
-        -->
         <activity android:name=".CartActivity" />
         <activity
             android:name=".ReceiptActivity"
