@@ -43,24 +43,16 @@ public class FoodMenuActivity extends Activity {
     String itemName = view.getTag().toString();
     if(cart.containsKey(itemName)) {
       final int
-        value = cart.get(itemName) + 1;
+              value = cart.get(itemName) + 1;
       cart.put(itemName, value);
-      int id = getResources().getIdentifier(itemName.toLowerCase() + "Number","id", getPackageName());
-      TextView number = findViewById(id);
-      number.setText(String.valueOf(value));
+      editNumber(itemName, value);
     } else {
       cart.put(itemName, 1);
       view.setVisibility(View.GONE);
-
-      int
-              increment = getResources().getIdentifier(itemName.toLowerCase() + "Increment","id", getPackageName()),
-              decrement = getResources().getIdentifier(itemName.toLowerCase() + "Decrement","id", getPackageName()),
-              number = getResources().getIdentifier(itemName.toLowerCase() + "Number","id", getPackageName());
       Button
-              incButton = findViewById(increment),
-              decButton = findViewById(decrement);
-
-      TextView numText = findViewById(number);
+              incButton = (Button) getViewFromIdentifier(itemName.toLowerCase() + "Increment"),
+              decButton = (Button) getViewFromIdentifier(itemName.toLowerCase() + "Decrement");
+      TextView numText = (TextView) getViewFromIdentifier(itemName.toLowerCase() + "Number");
       numText.setText("1");
       incButton.setVisibility(View.VISIBLE);
       numText.setVisibility(View.VISIBLE);
@@ -72,14 +64,10 @@ public class FoodMenuActivity extends Activity {
     String itemName = view.getTag().toString();
     if(cart.get(itemName) == 1) {
       cart.remove(itemName);
-      int
-        add = getResources().getIdentifier(itemName.toLowerCase() + "Button", "id", getPackageName()),
-        increment = getResources().getIdentifier(itemName.toLowerCase() + "Increment", "id", getPackageName()),
-        number = getResources().getIdentifier(itemName.toLowerCase() + "Number", "id", getPackageName());
       Button
-        addButton = findViewById(add),
-        incrementButton = findViewById(increment);
-      TextView numberText = findViewById(number);
+        addButton = (Button) getViewFromIdentifier(itemName.toLowerCase() + "Button"),
+        incrementButton = (Button) getViewFromIdentifier(itemName.toLowerCase() + "Increment");
+      TextView numberText = (TextView) getViewFromIdentifier(itemName.toLowerCase() + "Number");
 
       view.setVisibility(View.GONE);
       incrementButton.setVisibility(View.GONE);
@@ -88,11 +76,16 @@ public class FoodMenuActivity extends Activity {
     } else {
       final int value = cart.get(itemName) - 1;
       cart.put(itemName, value);
-      int id = getResources().getIdentifier(itemName.toLowerCase() + "Number","id", getPackageName());
-      TextView number = findViewById(id);
-      number.setText(String.valueOf(value));
+      editNumber(itemName, value);
     }
   }
 
+  View getViewFromIdentifier(String identifier) {
+    return findViewById(getResources().getIdentifier(identifier, "id", getPackageName()));
+  }
 
+  private void editNumber(String itemName, int newValue) {
+    TextView numberText = (TextView) getViewFromIdentifier(itemName.toLowerCase() + "Number");
+    numberText.setText(String.valueOf(newValue));
+  }
 }
