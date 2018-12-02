@@ -17,7 +17,8 @@ public class MainActivity extends Activity {
     USER = "ae.ac.ku.pizza.USER_OBJECT",
     LOGOUT = "ae.ac.ku.pizza.LOGOUT_VALUE",
     SIGNUP = "ae.ac.ku.pizza.SIGNUP_VALUE",
-    CART = "ae.ac.ku.pizza.CART_HASHMAP";
+    CART = "ae.ac.ku.pizza.CART_HASHMAP",
+    PAYMENT = "ae.ac.ku.pizza.PAYMENT_INFORMATION";
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {

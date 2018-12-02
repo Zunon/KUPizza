@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -107,5 +108,34 @@ public class CartActivity extends Activity {
         }
       });
 
+  }
+
+  public void enableCard(View view) {
+    EditText cardInput = findViewById(R.id.cardInput);
+    cardInput.setEnabled(true);
+    cardInput.setFocusable(true);
+  }
+
+  public void disableCard(View view) {
+    EditText cardInput = findViewById(R.id.cardInput);
+    cardInput.setEnabled(true);
+    cardInput.setFocusable(true);
+  }
+
+  public void checkOut(View view) {
+    String paymentData;
+    EditText cardInput = findViewById(R.id.cardInput);
+    if(cardInput.isEnabled()) {
+      paymentData = "Credit Card: " + cardInput.getText().toString();
+    } else {
+      paymentData = "Cash on Delivery";
+    }
+
+    Intent receiptIntent = new Intent(this, ReceiptActivity.class);
+    receiptIntent.putExtra(MainActivity.USER, currentUser);
+    receiptIntent.putExtra(MainActivity.CART, cart);
+    receiptIntent.putExtra(MainActivity.PAYMENT, paymentData);
+    startActivity(receiptIntent);
+    finish();
   }
 }

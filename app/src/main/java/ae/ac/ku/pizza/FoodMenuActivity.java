@@ -54,7 +54,6 @@ public class FoodMenuActivity extends Activity {
 
   @Override
   protected void onNewIntent(Intent intent) {
-    // TODO: NEW IMPLEMENTATION
     super.onNewIntent(intent);
     if(intent.hasExtra(MainActivity.CART)) {
       cart = (HashMap<String, Integer[]>) intent.getSerializableExtra(MainActivity.CART);

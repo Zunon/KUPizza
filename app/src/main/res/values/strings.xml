@@ -32,7 +32,7 @@
     <string name="button_decrement">-</string>
     <string name="back_to_menu">Back to Menu</string>
     <string name="item_deals">Deals</string>
-    <string name="item_pasta" >Pasta</string>
+    <string name="item_pasta">Pasta</string>
     <string name="item_desserts">Desserts</string>
     <string name="tag_deals">deals</string>
     <string name="tag_pizza">pizza</string>
@@ -42,4 +42,9 @@
     <string name="tag_drinks">drinks</string>
     <string name="tag_pasta">pasta</string>
     <string name="button_checkout">Place Order</string>
+    <string name="payment_select">Payment Method:</string>
+    <string name="choice_card">Credit Card</string>
+    <string name="choice_cash">Cash on Delivery</string>
+    <string name="card_number">Credit Card:</string>
+    <string name="title_activity_receipt">ReceiptActivity</string>
 </resources>
