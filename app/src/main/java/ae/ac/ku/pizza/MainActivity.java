@@ -20,6 +20,9 @@ public class MainActivity extends Activity {
     CART = "ae.ac.ku.pizza.CART_HASHMAP",
     PAYMENT = "ae.ac.ku.pizza.PAYMENT_INFORMATION",
     TOTAL = "ae.ac.ku.pizza.TOTAL_VALUE";
+  public static final double
+    STORE_LATITUDE = 24.445313,
+    STORE_LONGITUDE = 54.403313;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
