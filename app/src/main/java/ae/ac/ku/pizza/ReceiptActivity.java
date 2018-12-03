@@ -3,11 +3,15 @@ package ae.ac.ku.pizza;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
+import android.os.Environment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.TextView;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -35,6 +39,11 @@ public class ReceiptActivity extends Activity {
     initializeValues();
     initRecycleView();
     calculateTime();
+    try {
+      writeToFile();
+    } catch(IOException e) {
+      Log.e(TAG, "writeToFile: " + e.getMessage());
+    }
   }
 
   private void initializeValues() {
@@ -74,13 +83,45 @@ public class ReceiptActivity extends Activity {
     return radiusOfEarth * c;
   }
 
-  private void calculateTime() {
+  private int calculateTime() {
     final double
       distance = calculateDistance(),
       kilometers = distance / 1000,
       exactApprox = kilometers * 7;
-    final int minutes = (int) (5*(Math.round(exactApprox/5)));
+    return (int) (5*(Math.round(exactApprox/5)));
+  }
+
+  private void setTime() {
     TextView timeValue = findViewById(R.id.timeValue);
-    timeValue.setText(String.valueOf(minutes) + " Minutes");
+    timeValue.setText(String.valueOf(calculateTime()) + " Minutes");
+  }
+
+  private void writeToFile() throws IOException {
+    if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+      File file = new File(getExternalFilesDir(null), "receipt.txt");
+      if(!file.exists()) {
+        file.mkdirs();
+      }
+      PrintWriter printWriter = new PrintWriter(file);
+      StringBuilder builder = new StringBuilder();
+      builder.append(getString(R.string.receipt_start) + "\n");
+      builder.append(getString(R.string.info_laber) + "\n");
+      builder.append(getString(R.string.name_label) + "\t" + currentUser.getFirstName() + " " + currentUser.getLastName() + "\n");
+      builder.append(getString(R.string.phone_label) + "\t" + currentUser.getPhoneNumber() + "\n");
+      builder.append(getString(R.string.order_label) + "\n");
+      for(String item : cart.keySet()) {
+        builder.append(item + "\t" + cart.get(item)[0] + getString(R.string.x) + cart.get(item)[1] + getString(R.string.aed) + "\n");
+      }
+      builder.append(getString(R.string.price_label) + "\t" + totalPrice + "\n");
+      builder.append(getString(R.string.location_label) + "\t" + currentUser.getLocation() + "\n");
+      builder.append(getString(R.string.time_label) + "\t" + calculateTime() + " Minutes" + "\n");
+      builder.append(getString(R.string.receipt_end));
+      String output = builder.toString();
+      printWriter.print(output);
+      printWriter.close();
+      Log.d(TAG, "writeToFile: " + file.exists());
+    } else {
+      Log.e(TAG, "writeToFile: NOT MOUNTED");
+    }
   }
 }
