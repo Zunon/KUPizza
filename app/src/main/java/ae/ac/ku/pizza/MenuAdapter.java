@@ -5,7 +5,6 @@ import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,7 +36,6 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder>{
 
   @Override
   public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-    Log.d(TAG, "onBindViewHolder: called.");
     String labelTag =mNames.get(i).toLowerCase().replace(' ', '_');
     viewHolder.label.setText(mNames.get(i));
     viewHolder.price.setText(mPrices.get(i).toString());

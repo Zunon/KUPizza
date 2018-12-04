@@ -42,7 +42,6 @@ public class ReceiptActivity extends Activity {
     try {
       writeToFile();
     } catch(IOException e) {
-      Log.e(TAG, "writeToFile: " + e.getMessage());
     }
   }
 
@@ -57,7 +56,6 @@ public class ReceiptActivity extends Activity {
     nameText.setText(currentUser.getFirstName() + " " + currentUser.getLastName());
     phoneText.setText(currentUser.getPhoneNumber());
     totalText.setText(String.valueOf(totalPrice));
-    Log.d(TAG, "initializeValues: " + currentUser.getLocation());
     locationText.setText(currentUser.getLocation());
   }
 
@@ -90,7 +88,7 @@ public class ReceiptActivity extends Activity {
       kilometers = distance / 1000,
       exactApprox = kilometers * 7,
       exacterApprox = Math.sqrt(exactApprox * 17);
-    return (int) (5*(Math.round(exacterApprox/5)));
+    return (int) (5*(Math.round(exacterApprox/5))) + 15;
   }
 
   private void setTime() {
@@ -119,9 +117,7 @@ public class ReceiptActivity extends Activity {
       String output = builder.toString();
       printWriter.print(output);
       printWriter.close();
-      Log.d(TAG, "writeToFile: " + file.exists());
     } else {
-      Log.e(TAG, "writeToFile: NOT MOUNTED");
     }
   }
 }

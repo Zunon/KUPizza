@@ -57,6 +57,7 @@ public class FoodMenuActivity extends Activity {
     super.onNewIntent(intent);
     if(intent.hasExtra(MainActivity.CART)) {
       cart = (HashMap<String, Integer[]>) intent.getSerializableExtra(MainActivity.CART);
+
       for(String type : categories) {
         try {
           RecyclerView recyclerView = (RecyclerView) getViewFromIdentifier(getTagFromText(type) + "View");
@@ -260,6 +261,7 @@ public class FoodMenuActivity extends Activity {
       // INSTANTIATE RECYCLERVIEWS
       RecyclerView recyclerView = (RecyclerView) getViewFromIdentifier(getTagFromText(type) + "View");
       MenuAdapter adapter = new MenuAdapter(nameMap.get(type), priceMap.get(type), this);
+      Log.d(TAG, "initRecyclerViews: Attaching adapter" );
       recyclerView.setAdapter(adapter);
       recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }

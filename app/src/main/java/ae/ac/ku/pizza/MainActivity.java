@@ -3,12 +3,13 @@ package ae.ac.ku.pizza;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 
-import java.io.IOException;
-import java.io.InputStream;
+import com.bumptech.glide.Glide;
 
 public class MainActivity extends Activity {
 
@@ -29,6 +30,7 @@ public class MainActivity extends Activity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
     persist();
+    Glide.with(this).load(Uri.parse("file:///android_asset/logo.png")).into((ImageView) findViewById(R.id.posterImage));
   }
 
   @Override
