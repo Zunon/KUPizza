@@ -68,18 +68,20 @@ public class ReceiptActivity extends Activity {
 
   private double calculateDistance() {
     double userLatitude, userLongitude;
-    String[] locationString = currentUser.getLocation().split(",", 2);
-    userLatitude = Double.parseDouble(locationString[0]);
-    userLongitude = Double.parseDouble(locationString[1]);
-    final double
-      radiusOfEarth = 6361e3,
-      φ1 = Math.toRadians(MainActivity.STORE_LATITUDE),
-      φ2 = Math.toRadians(userLatitude),
-      Δφ = Math.toRadians(userLatitude - MainActivity.STORE_LATITUDE),
-      Δλ = Math.toRadians(userLongitude - MainActivity.STORE_LONGITUDE),
-      haversine = Math.pow(Math.sin(Δφ/2), 2) + Math.cos(φ1) * Math.cos(φ2) * Math.pow(Math.sin(Δλ/2), 2),
-      c = 2 * Math.atan2(Math.sqrt(haversine), Math.sqrt(1 - haversine));
-    return radiusOfEarth * c;
+    if(!currentUser.getLocation().equals("Unknown")) {
+      String[] locationString = currentUser.getLocation().split(",", 2);
+      userLatitude = Double.parseDouble(locationString[0]);
+      userLongitude = Double.parseDouble(locationString[1]);
+      final double
+              radiusOfEarth = 6361e3,
+              φ1 = Math.toRadians(MainActivity.STORE_LATITUDE),
+              φ2 = Math.toRadians(userLatitude),
+              Δφ = Math.toRadians(userLatitude - MainActivity.STORE_LATITUDE),
+              Δλ = Math.toRadians(userLongitude - MainActivity.STORE_LONGITUDE),
+              haversine = Math.pow(Math.sin(Δφ / 2), 2) + Math.cos(φ1) * Math.cos(φ2) * Math.pow(Math.sin(Δλ / 2), 2),
+              c = 2 * Math.atan2(Math.sqrt(haversine), Math.sqrt(1 - haversine));
+      return radiusOfEarth * c;
+    } else return 2700;
   }
 
   private int calculateTime() {

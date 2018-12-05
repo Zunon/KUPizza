@@ -16,9 +16,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
+import java.util.List;
+
 public class SignUpActivity extends Activity {
 
   String location = "Unknown";
+  LocationManager mLocationManager;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -30,24 +33,24 @@ public class SignUpActivity extends Activity {
   public void storeInfo(View view) {
 
     EditText
-      fNameE = findViewById(R.id.signUpFirstName),
-      lNameE = findViewById(R.id.signUpLastName),
-      phoneE = findViewById(R.id.signUpPhone),
-      emailE = findViewById(R.id.signUpEmail),
-      streetE = findViewById(R.id.signUpStreet),
-      buildingE = findViewById(R.id.signUpBuilding),
-      floorE = findViewById(R.id.signUpFloor),
-      apartmentE = findViewById(R.id.signUpApartment);
+            fNameE = findViewById(R.id.signUpFirstName),
+            lNameE = findViewById(R.id.signUpLastName),
+            phoneE = findViewById(R.id.signUpPhone),
+            emailE = findViewById(R.id.signUpEmail),
+            streetE = findViewById(R.id.signUpStreet),
+            buildingE = findViewById(R.id.signUpBuilding),
+            floorE = findViewById(R.id.signUpFloor),
+            apartmentE = findViewById(R.id.signUpApartment);
 
     String
-      fName = fNameE.getText().toString(),
-      lName = lNameE.getText().toString(),
-      phone = phoneE.getText().toString(),
-      email = emailE.getText().toString(),
-      street = streetE.getText().toString(),
-      building = buildingE.getText().toString(),
-      floor = floorE.getText().toString(),
-      apartment = apartmentE.getText().toString();
+            fName = fNameE.getText().toString(),
+            lName = lNameE.getText().toString(),
+            phone = phoneE.getText().toString(),
+            email = emailE.getText().toString(),
+            street = streetE.getText().toString(),
+            building = buildingE.getText().toString(),
+            floor = floorE.getText().toString(),
+            apartment = apartmentE.getText().toString();
 
     SharedPreferences localPrefs = getSharedPreferences(getString(R.string.shared_preferences_filename), MODE_PRIVATE);
     SharedPreferences.Editor editor = localPrefs.edit();
@@ -73,10 +76,11 @@ public class SignUpActivity extends Activity {
       ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 69);
     }
 
-    LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+    mLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
     LocationListener locationListener = new LocationListener() {
       @Override
       public void onLocationChanged(Location location) {
+        Log.d("Location: ", "onLocationChanged: " + location.getLatitude() + " " + location.getLongitude());
         setLocation(String.valueOf(location.getLatitude()).substring(0, 8) + ", " + String.valueOf(location.getLongitude()).substring(0, 8));
       }
 
@@ -96,10 +100,35 @@ public class SignUpActivity extends Activity {
       }
     };
 
-    locationManager.requestSingleUpdate(LocationManager.GPS_PROVIDER, locationListener, null);
+    mLocationManager.requestSingleUpdate(LocationManager.GPS_PROVIDER, locationListener, null);
+    if(this.location.equals("Unknown")) {
+      Location loc = getLastKnownLocation();
+      this.location = String.valueOf(loc.getLatitude()).substring(0, 8) + ", " + String.valueOf(loc.getLongitude());
+    }
   }
 
   public void setLocation(String location) {
     this.location = location;
+  }
+
+
+  private Location getLastKnownLocation() {
+    mLocationManager = (LocationManager) getApplicationContext().getSystemService(LOCATION_SERVICE);
+    List<String> providers = mLocationManager.getProviders(true);
+    Location bestLocation = null;
+    for(String provider : providers) {
+        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+          ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 69);
+        }
+        Location l = mLocationManager.getLastKnownLocation(provider);
+      if (l == null) {
+        continue;
+      }
+      if (bestLocation == null || l.getAccuracy() < bestLocation.getAccuracy()) {
+        // Found best last known location: %s", l);
+        bestLocation = l;
+      }
+    }
+    return bestLocation;
   }
 }

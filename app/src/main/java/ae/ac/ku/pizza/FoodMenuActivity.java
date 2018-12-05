@@ -89,11 +89,13 @@ public class FoodMenuActivity extends Activity {
                           increment = ancestor.findViewWithTag(tagName + "inc"),
                           decrement = ancestor.findViewWithTag(tagName + "dec"),
                           add = ancestor.findViewWithTag(tagName + "add");
-                  number.setVisibility(View.VISIBLE);
-                  increment.setVisibility(View.VISIBLE);
-                  decrement.setVisibility(View.VISIBLE);
-                  add.setVisibility(View.GONE);
-                  number.setText(String.valueOf(cart.get(item)[0]));
+                  if(number != null) {
+                    number.setVisibility(View.VISIBLE);
+                    increment.setVisibility(View.VISIBLE);
+                    decrement.setVisibility(View.VISIBLE);
+                    add.setVisibility(View.GONE);
+                    number.setText(String.valueOf(cart.get(item)[0]));
+                  }
                 }
 
                 recyclerView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
