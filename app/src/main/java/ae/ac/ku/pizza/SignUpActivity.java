@@ -73,7 +73,7 @@ public class SignUpActivity extends Activity {
       ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 69);
     }
 
-    LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+    LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
     LocationListener locationListener = new LocationListener() {
       @Override
       public void onLocationChanged(Location location) {
